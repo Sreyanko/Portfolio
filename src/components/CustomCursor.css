@@ -1,0 +1,38 @@
+/* ── Custom Cursor ──────────────────────────────────────────── */
+
+.cursor-dot {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 40px;
+  height: 40px;
+  background-image: url('/cursor.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 10000 !important;
+  will-change: transform;
+  transform-origin: 0 0;
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+}
+
+.cursor-dot--hidden {
+  opacity: 0 !important;
+}
+
+.cursor-dot--hover {
+  transform: scale(0.8);
+}
+
+/* Hide native cursor ONLY when custom cursor is active */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Hide on touch */
+@media (pointer: coarse) {
+  .cursor-dot {
+    display: none !important;
+  }
+}

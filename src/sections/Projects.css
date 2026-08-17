@@ -1,0 +1,209 @@
+/* ── Projects Section ───────────────────────────────────────── */
+.projects {
+  position: relative;
+  background: var(--color-bg);
+}
+
+/* Individual Project */
+.project {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--color-border);
+  background: rgba(10, 10, 16, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--duration-mid) var(--ease-out),
+              transform var(--duration-mid) var(--ease-out);
+}
+
+.project:hover {
+  border-color: var(--color-border-hover);
+}
+
+
+/* Theme-based glow */
+.project[data-theme="space"]::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(0, 229, 255, 0.03), transparent 60%);
+  pointer-events: none;
+}
+
+.project[data-theme="earth"]::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(74, 125, 255, 0.03), transparent 60%);
+  pointer-events: none;
+}
+
+.project[data-theme="search"]::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.03), transparent 60%);
+  pointer-events: none;
+}
+
+/* Canvas */
+.project__canvas {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project__canvas-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-elevated);
+}
+
+/* Info */
+.project__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  justify-content: center;
+  padding: var(--space-md) 0;
+}
+
+.project__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.project__number {
+  font-size: var(--text-xs);
+  color: var(--color-cyan);
+  letter-spacing: 0.3em;
+}
+
+.project__title {
+  font-size: var(--text-4xl);
+  font-weight: 600;
+  color: var(--color-white);
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+}
+
+.project__subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.2em;
+}
+
+.project__description {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* Tech Tags */
+.project__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.project__tech-tag {
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-border);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.15em;
+  transition: border-color var(--duration-fast), color var(--duration-fast);
+}
+
+.project:hover .project__tech-tag {
+  border-color: var(--color-border-hover);
+  color: var(--color-text);
+}
+
+/* Features */
+.project__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.project__feature {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.project__feature-dot {
+  color: var(--color-cyan);
+  font-size: var(--text-xs);
+}
+
+/* CTA */
+.project__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border: 1px solid var(--color-border-hover);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  width: fit-content;
+  transition: all var(--duration-mid) var(--ease-out);
+}
+
+.project__cta:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  background: var(--color-cyan-muted);
+  transform: translateX(5px);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .project {
+    grid-template-columns: 1fr;
+  }
+
+  .project:nth-child(even) {
+    direction: ltr;
+  }
+
+  .project__canvas {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project {
+    padding: var(--space-md);
+  }
+
+  .project__canvas {
+    height: 250px;
+  }
+
+  .project__title {
+    font-size: var(--text-2xl);
+  }
+}

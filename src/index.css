@@ -1,0 +1,275 @@
+/* ============================================================
+   SREYANKO // DIGITAL UNIVERSE — Global Design System
+   ============================================================ */
+
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+/* ── CSS Custom Properties ────────────────────────────────── */
+:root {
+  /* Colors */
+  --color-bg:          #050508;
+  --color-bg-elevated: #0a0a10;
+  --color-bg-card:     #0d0d14;
+  --color-surface:     #111118;
+  --color-border:      rgba(255, 255, 255, 0.06);
+  --color-border-hover:rgba(255, 255, 255, 0.12);
+
+  --color-white:       #f0f0f5;
+  --color-text:        #c8c8d4;
+  --color-text-muted:  #6a6a7a;
+  --color-text-dim:    #3a3a4a;
+
+  --color-cyan:        #00e5ff;
+  --color-cyan-muted:  rgba(0, 229, 255, 0.15);
+  --color-cyan-glow:   rgba(0, 229, 255, 0.3);
+  --color-blue:        #4a7dff;
+  --color-blue-muted:  rgba(74, 125, 255, 0.15);
+  --color-violet:      #8b5cf6;
+  --color-violet-muted:rgba(139, 92, 246, 0.15);
+  --color-green:       #22c55e;
+
+  /* Typography */
+  --font-display:  'Space Grotesk', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  /* Font Sizes */
+  --text-xs:    0.7rem;
+  --text-sm:    0.8rem;
+  --text-base:  0.95rem;
+  --text-lg:    1.125rem;
+  --text-xl:    1.35rem;
+  --text-2xl:   1.75rem;
+  --text-3xl:   2.25rem;
+  --text-4xl:   3rem;
+  --text-5xl:   4rem;
+  --text-6xl:   5.5rem;
+  --text-hero:  clamp(3rem, 10vw, 9rem);
+
+  /* Spacing */
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2.5rem;
+  --space-2xl:  4rem;
+  --space-3xl:  6rem;
+  --space-4xl:  10rem;
+
+  /* Layout */
+  --max-width:  1400px;
+  --nav-height: 60px;
+
+  /* Transitions */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 0.2s;
+  --duration-mid:  0.4s;
+  --duration-slow: 0.8s;
+
+  /* Z-Index */
+  --z-bg:      -1;
+  --z-content:  1;
+  --z-nav:     100;
+  --z-loader:  300;
+  --z-cursor:  400;
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background: var(--color-cyan-muted);
+  color: var(--color-white);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-dim);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Noise Overlay ────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Scanlines (very subtle) ──────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.015;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+}
+
+/* ── Typography Utilities ─────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-blue), var(--color-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section Layout ───────────────────────────────────────── */
+.section {
+  position: relative;
+  min-height: 100vh;
+  padding: var(--space-4xl) var(--space-xl);
+  overflow: hidden;
+}
+
+.section-inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  z-index: var(--z-content);
+}
+
+/* ── Focus States ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+/* ── Reduced Motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Responsive Breakpoints ───────────────────────────────── */
+/* Tablet: max-width 1024px */
+@media (max-width: 1024px) {
+  :root {
+    --text-hero: clamp(2.5rem, 8vw, 5rem);
+    --space-4xl: 6rem;
+  }
+  .section {
+    padding: var(--space-3xl) var(--space-lg);
+  }
+}
+
+/* Mobile: max-width 768px */
+@media (max-width: 768px) {
+  :root {
+    --text-hero: clamp(2rem, 10vw, 3.5rem);
+    --text-6xl: 3rem;
+    --text-5xl: 2.5rem;
+    --text-4xl: 2rem;
+    --space-4xl: 4rem;
+    --nav-height: 56px;
+  }
+  .section {
+    padding: var(--space-2xl) var(--space-md);
+  }
+  body::after,
+  body::before {
+    display: none; /* Remove noise/scanlines on mobile for perf */
+  }
+}
+
+/* Small Mobile: max-width 480px */
+@media (max-width: 480px) {
+  :root {
+    --text-hero: clamp(1.8rem, 12vw, 2.5rem);
+    --text-6xl: 2.2rem;
+    --text-5xl: 1.8rem;
+  }
+  .section {
+    padding: var(--space-xl) var(--space-md);
+  }
+}

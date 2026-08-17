@@ -1,0 +1,132 @@
+/* ── About Section ──────────────────────────────────────────── */
+.about {
+  position: relative;
+  background: linear-gradient(180deg, var(--color-bg), var(--color-bg-elevated), var(--color-bg));
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+/* Info Fields */
+.about__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.about__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  background: rgba(10, 10, 16, 0.5);
+  transition: border-color var(--duration-mid) var(--ease-out),
+              background var(--duration-mid) var(--ease-out);
+}
+
+.about__field:hover {
+  border-color: var(--color-border-hover);
+  background: rgba(10, 10, 16, 0.8);
+}
+
+.about__field-label {
+  font-size: var(--text-xs);
+  color: var(--color-cyan);
+  letter-spacing: 0.3em;
+  font-weight: 500;
+}
+
+.about__field-divider {
+  width: 20px;
+  height: 1px;
+  background: var(--color-border-hover);
+}
+
+.about__field-value {
+  font-size: var(--text-xl);
+  color: var(--color-white);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.about__field-item {
+  font-size: var(--text-base);
+}
+
+/* Visual Panel */
+.about__visual {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  background: rgba(10, 10, 16, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.about__visual::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0, 229, 255, 0.03), transparent 60%);
+  pointer-events: none;
+}
+
+.about__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-cyan-muted);
+  background: rgba(0, 229, 255, 0.05);
+  font-size: var(--text-xs);
+  color: var(--color-cyan);
+  letter-spacing: 0.25em;
+  width: fit-content;
+}
+
+.about__badge-icon {
+  font-size: var(--text-sm);
+}
+
+.about__statement {
+  font-size: var(--text-2xl);
+  color: var(--color-white);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .about__field-value {
+    font-size: var(--text-lg);
+  }
+
+  .about__statement {
+    font-size: var(--text-xl);
+  }
+
+  .about__visual {
+    padding: var(--space-lg);
+  }
+}
